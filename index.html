@@ -8,8 +8,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An interactive data visualization exploring tiger conservation, illegal wildlife trade, and the fight to protect endangered tigers worldwide.">
+    <meta name="author" content="Flesh and Fur Journal">
     <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <title>Flesh and Fur - Tiger Conservation Data Story</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,15 +21,21 @@
 
   <!-- Cover Section -->
   <div class="container1">
+    <!-- Reading Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
     <section id="showcase">
-        <h1><mark>Flesh and Fur</mark></h1>
+        <h1 class="fade-in-up"><mark>Flesh and Fur</mark></h1>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
     </section>
 
     <!-- Introdcution Section -->
-      <section id="introduction">
-        <h1>A <span style="color: orange">beauty</span> isn't he?<br></h1>
+      <section id="introduction" class="fade-section">
+        <h1 class="slide-in-left">A <span style="color: orange">beauty</span> isn't he?<br></h1>
 
-        <p>Seen these creatures in a movie? Or in a recent art exhbition you've visited latey? I'm sure you know by now, these creatures are the Panthera Tigris,
+        <p class="fade-in">Seen these creatures in a movie? Or in a recent art exhbition you've visited latey? I'm sure you know by now, these creatures are the Panthera Tigris,
           or more commonly reffered to as Tigers.
           <br>
           <br>
@@ -38,36 +46,36 @@
         </section>
 
       <!-- Tiger Population Section   -->
-      <section id="tigerpopulation">
-          <h1>They are unfortunately, very severely <mark>endangered</mark></h1>
-          <p>The global population of wild tigers has plummeted from an initial 100,000 wild tigers at the
-            start of the 20th century to an estimated 3,200 last year. This places them as one of the most
+      <section id="tigerpopulation" class="fade-section">
+          <h1 class="fade-in-up">They are unfortunately, very severely <mark>endangered</mark></h1>
+          <p class="fade-in">The global population of wild tigers has plummeted from an initial <span class="counter" data-target="100000">0</span> wild tigers at the
+            start of the 20th century to an estimated <span class="counter" data-target="3200">0</span> last year. This places them as one of the most
             endangered animals in the world right now.
          </P>
          <!-- Tiger Population Area Line Graph -->
-            <div id="tigerpopulationgraph"></div>
+            <div id="tigerpopulationgraph" class="chart-container fade-in"></div>
       </section>
 
 
       <!-- Tiger Population Geo Chloropleth Section -->
-      <section id="TrcPop">
+      <section id="TrcPop" class="fade-section">
               <br>
-        <h2>As of 2022, wild tigers can only be found in <mark>13 countries.</mark>
+        <h2 class="fade-in-up">As of 2022, wild tigers can only be found in <mark><span class="counter" data-target="13">0</span> countries.</mark>
           <br>
           <span style="color: orange">More than 50%</span> of them reside in India. </h2>
 
-      <p>
+      <p class="fade-in">
         These 13 countries are globally known as Tiger Range Countries. (TRCs)
         Only 8 of them are recorded to be  active breeding grounds for wild tigers.  These 8 countries are
         Bangladesh, Bhutan, Thailand, Indonesia, Russia, Malaysia, Nepal & India.
       </P>
-      <div id="TrcChloropleth"></div>
+      <div id="TrcChloropleth" class="chart-container fade-in"></div>
       </section>
 
       <!-- Why Section -->
-      <section id="trading">
-        <h1><mark>Why</mark> is this happening?</h1>
-          <p>
+      <section id="trading" class="fade-section parallax-section">
+        <h1 class="slide-in-right"><mark>Why</mark> is this happening?</h1>
+          <p class="fade-in">
           While habitat loss, poor land use and conflict with humans pose pressures to wild tiger populations, <span style="color: orange; font-weight: 700;">poaching and illegal trade</span> have been the primary cause for their decline.
             <br>
             <br>
@@ -79,19 +87,19 @@
           <br>
     </section>
       <!-- Seizure Section -->
-      <section id="Seizures">
+      <section id="Seizures" class="fade-section">
 
-        <h2> From 2000 to 2018, <mark>more than 77% of illegal tiger parts</mark> were seized in TRCs, with India massively leading.</h2>
+        <h2 class="fade-in-up"> From 2000 to 2018, <mark>more than 77% of illegal tiger parts</mark> were seized in TRCs, with India massively leading.</h2>
 
         <!-- Seizure Bar Graph -->
-           <div id="TrcSeizuresBar"></div>
+           <div id="TrcSeizuresBar" class="chart-container fade-in"></div>
            <!-- Seizure Geo Scatter  -->
-          <div id="TrcSeizures"></div>
+          <div id="TrcSeizures" class="chart-container fade-in"></div>
           <br>
             <br>
             <br>
 
-          <section class="hotspottext">
+          <section class="hotspottext fade-in">
 
             <p style=" font-weight: 900; font-size: 20px;">
               Parts were most commonly seized around these hotspots:</p>
@@ -120,11 +128,11 @@
 
 
       <!-- Tigers in Captivity Section -->
-      <section id="asian">
+      <section id="asian" class="fade-section parallax-section">
 
-        <h1>Tigers in <mark>Captivity</mark></h1>
+        <h1 class="slide-in-right">Tigers in <mark>Captivity</mark></h1>
 
-        <p>
+        <p class="fade-in">
         Over the years, the demand for tigers has led to the <span style="color: orange; font-weight: 700;">mass development of inhumane tiger breeding farms,</span> where tigers are actively bred,
         slaughtered and traded under undesirable conditions.
         <br>
@@ -137,12 +145,12 @@
     </section>
 
     <!-- Captive Visualisation Section -->
-      <section id="Captive">
+      <section id="Captive" class="fade-section">
         <br>
-         <h2><mark>Thailand and Vietnam</mark> stand out, with 81% and 67% of their seized tigers suspected from captive-bred sources.</h2>
+         <h2 class="fade-in-up"><mark>Thailand and Vietnam</mark> stand out, with 81% and 67% of their seized tigers suspected from captive-bred sources.</h2>
 
-          <div id="CaptiveGraph"></div>
-          <p>
+          <div id="CaptiveGraph" class="chart-container fade-in"></div>
+          <p class="fade-in">
             Tiger reserves play a significant part in Thailand's massive tourism industry. However, over the years there have been increasing
             reports of these reserves being irresponsibly run. Much of these reserves were reported to be farming tigers for unethical
             wildlife entertainment and illegal trading purposes.
@@ -151,11 +159,11 @@
             <br>
             <br>
 
-            <h2><span style="color: orange; font-weight: 700;">The Wat Pha Luang Ta Bua Yanasampanno Temple </span></h2>
+            <h2 class="fade-in"><span style="color: orange; font-weight: 700;">The Wat Pha Luang Ta Bua Yanasampanno Temple </span></h2>
               <br>
-            <img src="tiger cubs .jpeg" width="1000" height="500">
+            <img src="tiger cubs .jpeg" width="1000" height="500" class="zoom-on-hover fade-in" alt="Tiger cubs at temple">
               <br>
-              <p>One such reserve is the Wat Pha Luang Ta Bua Yanasampanno Temple. For years, the temple has been
+              <p class="fade-in">One such reserve is the Wat Pha Luang Ta Bua Yanasampanno Temple. For years, the temple has been
                 a popular tourist hotspot where tourists could see tigers and monks living together in harmony.
                 However, there have been allegations about the temple sedating their tigers and being involved in illegal wildlife trades.
                 <br>
@@ -167,11 +175,11 @@
       </section>
 
       <!-- Legislation Section -->
-      <section id="Government">
+      <section id="Government" class="fade-section parallax-section">
 
-        <h1>Legislation & Policy <mark>Loopholes</mark></h1>
+        <h1 class="slide-in-right">Legislation & Policy <mark>Loopholes</mark></h1>
 
-        <p>
+        <p class="fade-in">
         Despite institutional efforts over the years to combat animal related crimes, policies still fall short in certain countries.
         <br>
         <br>
@@ -186,31 +194,31 @@
     </section>
 
         <!-- Online Listings for Tiger -->
-          <section id="Prosecuted" >
+          <section id="Prosecuted" class="fade-section">
             <br>
-        <h2><mark>77% of online listings</mark> for tiger parts were located in Vietnam.</h2>
+        <h2 class="fade-in-up"><mark>77% of online listings</mark> for tiger parts were located in Vietnam.</h2>
 
-      <p>
+      <p class="fade-in">
         Vietnam is a striking example of this. Vietnam only
-        reported 89 cases of seizures in the last two decades. However, in <span style="color: orange; font-weight: 700;">2019 to 2022 alone,</span> it was reported that there were a minimum of
-        <span style="color: orange; font-weight: 700;">515 Vietnamese based facebook accounts</span> actively selling tiger commodities.
+        reported <span class="counter" data-target="89">0</span> cases of seizures in the last two decades. However, in <span style="color: orange; font-weight: 700;">2019 to 2022 alone,</span> it was reported that there were a minimum of
+        <span class="counter" data-target="515">0</span> <span style="color: orange; font-weight: 700;">Vietnamese based facebook accounts</span> actively selling tiger commodities.
         <br>
         <br>
         The differences in these numbers are indicative of weak criminal responses within the country.
       </P>
           <!-- Bar Graph for Online Listings -->
-          <div id="OnlineListing"></div>
+          <div id="OnlineListing" class="chart-container fade-in"></div>
 
           </section>
 
           <!-- Tiger Bone Case Study -->
-          <section id="Captive">
+          <section id="Captive" class="fade-section">
 
-            <h2><span style="color: orange; font-weight: 700;">China's continued manufacturing of Tiger Bone Wine</span></h2>
+            <h2 class="fade-in"><span style="color: orange; font-weight: 700;">China's continued manufacturing of Tiger Bone Wine</span></h2>
             <br>
-            <img src="bonewine.jpeg" width="1000" height="500">
+            <img src="bonewine.jpeg" width="1000" height="500" class="zoom-on-hover fade-in" alt="Tiger bone wine bottle">
             <br>
-            <p>Another case in point is the ongoing manufacturing of Tiger bone wine in China. Sanhong is a Chinese based company that manufactures tiger bone wine.
+            <p class="fade-in">Another case in point is the ongoing manufacturing of Tiger bone wine in China. Sanhong is a Chinese based company that manufactures tiger bone wine.
               They specifically market their products to contain real tiger bones. In 2012, an investigation was launched to study the company and Chinese policies on endangered
               Chinese Policies.
               <br>
@@ -226,15 +234,15 @@
 
 
           <!-- Conclusion Section -->
-      <section id="conclusion">
-        <h1 style="color: white;">How can we <mark>help?</mark></h1>
+      <section id="conclusion" class="fade-section parallax-section">
+        <h1 class="slide-in-left" style="color: white;">How can we <mark>help?</mark></h1>
 
-        <p>While it is very much apparent that a significant part of conserving current wild tiger populations relies
+        <p class="fade-in">While it is very much apparent that a significant part of conserving current wild tiger populations relies
           on solving multiple institutional issues, there is still a lot we can do individually. It is not too late.
         <br>
         <br>
         According to Panthera, a recent report has shown that global populations have stabilized in the past years due to improved investments in tiger conservation. Wild tiger populations have since increased by 40% from 2010
-        to 2022. Last year's count stood at approximately 4500. 
+        to 2022. Last year's count stood at approximately <span class="counter" data-target="4500">0</span>. 
           <br>
           <br>
         </p>

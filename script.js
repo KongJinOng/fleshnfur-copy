@@ -1,5 +1,161 @@
 //Codes were taken from Plotly Reference Library on Plotly.com and USYD DECO3100 Tutorial Activities
 
+// ===== INTERACTIVE ENHANCEMENTS =====
+
+// Progress Bar
+window.addEventListener('scroll', () => {
+  const progressBar = document.getElementById('progressBar');
+  const windowHeight = window.innerHeight;
+  const documentHeight = document.documentElement.scrollHeight - windowHeight;
+  const scrolled = window.scrollY;
+  const progress = (scrolled / documentHeight) * 100;
+  progressBar.style.width = progress + '%';
+});
+
+// Scroll-triggered animations
+const observerOptions = {
+  threshold: 0.15,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const animateOnScroll = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+
+      // Trigger counter animation if element has counter class
+      if (entry.target.classList.contains('counter')) {
+        animateCounter(entry.target);
+      }
+
+      // Check if any children have counters
+      const counters = entry.target.querySelectorAll('.counter');
+      counters.forEach(counter => {
+        if (!counter.classList.contains('counted')) {
+          animateCounter(counter);
+        }
+      });
+    }
+  });
+}, observerOptions);
+
+// Observe all animated elements
+document.addEventListener('DOMContentLoaded', () => {
+  // Observe fade-in elements
+  const fadeElements = document.querySelectorAll('.fade-in, .fade-in-up, .slide-in-left, .slide-in-right, .chart-container');
+  fadeElements.forEach(el => animateOnScroll.observe(el));
+
+  // Observe sections
+  const sections = document.querySelectorAll('.fade-section');
+  sections.forEach(section => animateOnScroll.observe(section));
+
+  // Add smooth scroll behavior
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Hide scroll indicator after scrolling
+  let scrolled = false;
+  window.addEventListener('scroll', () => {
+    if (!scrolled) {
+      scrolled = true;
+      const indicator = document.querySelector('.scroll-indicator');
+      if (indicator) {
+        indicator.style.opacity = '0';
+        setTimeout(() => {
+          indicator.style.display = 'none';
+        }, 500);
+      }
+    }
+  });
+});
+
+// Animated Counter Function
+function animateCounter(element) {
+  if (element.classList.contains('counted')) return;
+
+  const target = parseInt(element.getAttribute('data-target'));
+  const duration = 2000; // 2 seconds
+  const increment = target / (duration / 16); // 60fps
+  let current = 0;
+
+  element.classList.add('counted', 'counting');
+
+  const updateCounter = () => {
+    current += increment;
+    if (current < target) {
+      element.textContent = Math.floor(current).toLocaleString();
+      requestAnimationFrame(updateCounter);
+    } else {
+      element.textContent = target.toLocaleString();
+      element.classList.remove('counting');
+    }
+  };
+
+  updateCounter();
+}
+
+// Parallax effect for sections
+window.addEventListener('scroll', () => {
+  const parallaxSections = document.querySelectorAll('.parallax-section');
+  parallaxSections.forEach(section => {
+    const scrolled = window.pageYOffset;
+    const coords = section.getBoundingClientRect().top + window.pageYOffset;
+    const parallax = (scrolled - coords) * 0.3;
+    section.style.backgroundPosition = `center ${parallax}px`;
+  });
+});
+
+// Add loading animation to charts
+const originalPlotlyNewPlot = Plotly.newPlot;
+Plotly.newPlot = function(div, data, layout, config) {
+  // Add loading class
+  if (typeof div === 'string') {
+    div = document.getElementById(div);
+  }
+  if (div) {
+    div.classList.add('loading');
+    div.style.minHeight = '400px';
+  }
+
+  // Call original function
+  const result = originalPlotlyNewPlot.apply(this, arguments);
+
+  // Remove loading class and add animation
+  if (div) {
+    setTimeout(() => {
+      div.classList.remove('loading');
+      div.style.animation = 'chartLoad 0.8s ease-out';
+    }, 100);
+  }
+
+  return result;
+};
+
+// Enhanced hover effects for plotly charts
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    const charts = document.querySelectorAll('.chart-container');
+    charts.forEach(chart => {
+      chart.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.02)';
+        this.style.transition = 'transform 0.3s ease';
+      });
+      chart.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+      });
+    });
+  }, 2000);
+});
 
 //Linking csv files 
 const TigPopDataSource = "tigerpopulation.csv";
